@@ -4,8 +4,8 @@ import pyautogui
 
 class Actions (object):
 
-  def random_float(self, ):
-    float(random.randrange(min_sec * 100, max_sec * 100)) / 100
+  def random_float(self, val):
+    float(random.randrange(val * 10000)) / 10000
 
   def next_target(self):
     pyautogui.hotkey('`')
