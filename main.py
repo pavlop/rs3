@@ -6,7 +6,7 @@ from src import killer_strong
 
 
 def main():
-  killer = killer_weak.KillerWeak(sec_per_monster=11)
+  killer = killer_weak.KillerWeak(sec_per_monster=15)
   # killer = killer_strong.KillerStrong(sec_per_monster=35)
   killer.start()
 
