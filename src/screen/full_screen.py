@@ -1,10 +1,3 @@
-import time
-
-import PIL
-import cv2 as cv
-import pyautogui
-
-
 class MapProvider(object):
   pass
   # def __init__(self):

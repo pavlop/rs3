@@ -1,15 +1,11 @@
 
 import time
 
-from src import killer_weak
-from src import killer_strong
+from src import killer
 
 
 def main():
-  killer = killer_weak.KillerWeak(sec_per_monster=15)
-  # killer = killer_strong.KillerStrong(sec_per_monster=35)
-  killer.start()
-
+  killer.KillerScript(sec_per_monster=15).start()
 
 if __name__ == "__main__":
   print("3...")
