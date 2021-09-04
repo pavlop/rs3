@@ -1,8 +1,10 @@
-import time
 import random
+import time
+
 import pyautogui
 
-class Actions (object):
+
+class Actions(object):
 
   def random_float(self, val):
     float(random.randrange(val * 10000)) / 10000
@@ -14,16 +16,16 @@ class Actions (object):
     pyautogui.hotkey(char)
 
   def sleep_random_sec(self, min_sec, max_sec):
-    time.sleep(float(random.randrange(min_sec*100, max_sec*100))/100)
+    time.sleep(float(random.randrange(min_sec * 100, max_sec * 100)) / 100)
 
-  def kill_next_target (self, sec_per_monster):
+  def kill_next_target(self, sec_per_monster):
     self.next_target()
     self.sleep_random_sec(0, 0.1)
     self.next_target()
     self.sleep_random_sec(0, 1)
     self.attack_skill('1')
     self.attack_skill('2')
-    self.sleep_random_sec(sec_per_monster, sec_per_monster+3)
+    self.sleep_random_sec(sec_per_monster, sec_per_monster + 3)
 
   # def rotate_map(self):
   #   pyautogui.mouseDown(button='middle')
@@ -33,7 +35,6 @@ class Actions (object):
   #   pyautogui.move(-30, 0, 2)  # move the mouse left 30 pixels over 2 seconds.
   #   # pyautogui.move(-30, None)  # move the mouse left 30 pixels.
   #   pyautogui.mouseUp(button='middle')
-
 
 # pyautogui.keyDown('d')
 # a = actor.Actor()
