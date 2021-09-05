@@ -1,9 +1,6 @@
 import PIL
-import cv2 as cv
-import numpy
-import numpy as np
 import pyautogui
-from src.resources import images_map
+from src.resources.images_map import ScreenPart
 
 """
 Identify Areas of the game
