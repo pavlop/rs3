@@ -1,19 +1,30 @@
 import PIL
 import pyautogui
+
+from src.resources.images_map import IMAGE_FILES_MAP_RESOLVED
+from src.resources.images_map import IMAGE_MAP
 from src.resources.images_map import ScreenPart
 
 """
-Identify Areas of the game
+Identify Areas of the game screen.
 """
+
+
 class InitMarkup(object):
   def __init__(self, screen: PIL.Image.Image):
     if screen:
-      self.full_screen = self.screen
+      self.full_screen = screen
     else:
       self.full_screen = pyautogui.screenshot()  # returns a Pillow/PIL Image object, and saves it to a file
 
-  # def identify_inventory_button(self):
-  #   windowLocation = pyautogui.locateOnScreen('data/teleport_icon.png')
+  def identify_inventory_tab(self):
+    print(IMAGE_FILES_MAP_RESOLVED)
+    im1 = IMAGE_MAP[ScreenPart.ICON_BACKPACK_TAB]
+    # im1 = cv2.imread('../resources/menu/icon_backpack_tab.bmp', 0)
+    # cv2.imshow('lel', im1)
+    # print("PAVLOP in identify_inventory_tab :", im1)
+
+    # inventory_tab_location = pyautogui.locateOnScreen(IMAGE_MAP[ScreenPart.ICON_BACKPACK_TAB])
 
   # Box(left=1416, top=562, width=50, height=41)
   # self.game_screen_location = Box(left=0, top=0, width=500, height=500)
