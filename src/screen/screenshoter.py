@@ -1,7 +1,7 @@
 import PIL
+import cv2
 import pyautogui
 
-from src.resources.images_map import IMAGE_FILES_MAP_RESOLVED
 from src.resources.images_map import IMAGE_MAP
 from src.resources.images_map import ScreenPart
 
@@ -12,37 +12,47 @@ Identify Areas of the game screen.
 
 class InitMarkup(object):
   def __init__(self, screen: PIL.Image.Image):
-    if screen:
+    if screen is not None:
       self.full_screen = screen
     else:
       self.full_screen = pyautogui.screenshot()  # returns a Pillow/PIL Image object, and saves it to a file
 
   def identify_inventory_tab(self):
-    print(IMAGE_FILES_MAP_RESOLVED)
-    im1 = IMAGE_MAP[ScreenPart.ICON_BACKPACK_TAB]
-    # im1 = cv2.imread('../resources/menu/icon_backpack_tab.bmp', 0)
-    # cv2.imshow('lel', im1)
-    # print("PAVLOP in identify_inventory_tab :", im1)
+    icon_backpack_img = IMAGE_MAP[ScreenPart.ICON_BACKPACK_TAB]
+    icon_view_your_wealth_inventory = IMAGE_MAP[ScreenPart.ICON_VIEW_YOUR_WEALTH_INVENTORY]
 
-    # inventory_tab_location = pyautogui.locateOnScreen(IMAGE_MAP[ScreenPart.ICON_BACKPACK_TAB])
+    icon_backpack_found = cv2.matchTemplate(self.full_screen, icon_backpack_img, cv2.TM_SQDIFF_NORMED)
+    icon_wealth_found = cv2.matchTemplate(self.full_screen, icon_view_your_wealth_inventory, cv2.TM_SQDIFF_NORMED)
 
-  # Box(left=1416, top=562, width=50, height=41)
-  # self.game_screen_location = Box(left=0, top=0, width=500, height=500)
+    if icon_backpack_found is None:
+      print("Inventory tab is absent")
+    else:
+      print("Inventory tab found")
+      # We want the minimum squared difference
+      _, _, mnLoc, _ = cv2.minMaxLoc(icon_backpack_found)
+      backpack_x, backpack_y = mnLoc
 
-  # Returns (left, top, width, height)
-  # windowLocation = pyautogui.locateOnScreen('data/teleport_icon.png')
+      _, _, mnLoc, _ = cv2.minMaxLoc(icon_wealth_found)
+      wealth_x, wealth_y = mnLoc
 
-  # def __init__(self):
-  #   # self.def
-  #   self.first_town_template = cv.imread('data/town.png', 0)
-  #   self.last_town_template = cv.imread('data/last_town.png', 0)
-  #   self.enemy_template = cv.imread('data/red_enemy.png', 0)
-  #   self.player_template = cv.imread('data/player.png', 0)
-  #   self.map_selector_template = cv.imread('data/map_selector.png', 0)
-  #
-  # def get_minimap(self) -> PIL.Image.Image:
-  #   # Calling screenshot() will return an Image object (see the Pillow or PIL module documentation for details)
-  #   ts = time.time()
-  #   img = pyautogui.screenshot(region=(self.minimap_col, self.minimap_row, MINIMAP_X_SIZE, MINIMAP_Y_SIZE))
-  #   print('taking screenshot get_minimap, time_sec=', round(time.time() - ts, 4))
-  #   return img
+      icon_side_size, _ = icon_backpack_img.shape[:2]
+
+      inventory_width = 2 * (icon_side_size + wealth_x - backpack_x) + 20
+      inventory_height = wealth_y - backpack_y
+
+      inventory_start_x = backpack_x - 10
+      inventory_start_y = backpack_y + icon_side_size
+
+      # Draw the rectangle:
+      # Step 2: Get the size of the template. This is the same size as the match.
+      # trows, tcols = icon_backpack_img.shape[:2]
+
+      # Step 3: Draw the rectangle on large_image
+      cv2.rectangle(self.full_screen, (inventory_start_x, inventory_start_y),
+                    (inventory_start_x + inventory_width, inventory_start_y + inventory_height), (0, 0, 255), 2)
+
+      # Display the original image with the rectangle around the match.
+      cv2.imshow('output', self.full_screen)
+
+      # The image is only displayed if we call this
+      cv2.waitKey(0)
