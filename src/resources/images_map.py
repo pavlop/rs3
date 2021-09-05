@@ -13,11 +13,13 @@ class ScreenPart(Enum):
   MINING_LABEL_ADAMANTINE_ROCK = 3
   ICON_BACKPACK_TAB = 4
   ICON_INVENTORY_TUNA = 5
+  TEST_SCREENSHOT_FULL_SCREEN = 6
 
 
 IMAGE_FILES_MAP = {
   ScreenPart.MINING_LABEL_GOLD_ROCK: 'resources/label/mining_adamantine_rock.png',
   ScreenPart.ICON_BACKPACK_TAB: 'resources/menu/icon_backpack_tab.bmp',
+  ScreenPart.TEST_SCREENSHOT_FULL_SCREEN: 'resources/test/example_full_screenshot.png',
 }
 
 # Convert string paths to absolute paths
