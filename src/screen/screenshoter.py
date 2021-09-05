@@ -1,5 +1,29 @@
-class MapProvider(object):
-  pass
+import PIL
+import cv2 as cv
+import numpy
+import numpy as np
+import pyautogui
+from src.resources import images_map
+
+"""
+Identify Areas of the game
+"""
+class InitMarkup(object):
+  def __init__(self, screen: PIL.Image.Image):
+    if screen:
+      self.full_screen = self.screen
+    else:
+      self.full_screen = pyautogui.screenshot()  # returns a Pillow/PIL Image object, and saves it to a file
+
+  # def identify_inventory_button(self):
+  #   windowLocation = pyautogui.locateOnScreen('data/teleport_icon.png')
+
+  # Box(left=1416, top=562, width=50, height=41)
+  # self.game_screen_location = Box(left=0, top=0, width=500, height=500)
+
+  # Returns (left, top, width, height)
+  # windowLocation = pyautogui.locateOnScreen('data/teleport_icon.png')
+
   # def __init__(self):
   #   # self.def
   #   self.first_town_template = cv.imread('data/town.png', 0)
