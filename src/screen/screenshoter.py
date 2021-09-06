@@ -4,8 +4,8 @@ import pyautogui
 
 from src.resources.images_map import IMAGE_MAP
 from src.resources.images_map import ScreenPart
-from src.screen.screen_utils import RectangularArea
-from src.screen.screen_utils import area_between_pictures
+from utils.screen_utils import RectangularArea
+from utils.screen_utils import area_between_pictures
 
 """
 Identify Areas of the game screen.

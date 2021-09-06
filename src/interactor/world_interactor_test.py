@@ -3,9 +3,9 @@ import unittest
 from interactor.world_interactor import WorldInteractor
 from src.resources.images_map import IMAGE_MAP
 from src.resources.images_map import ScreenPart
-from src.screen.screen_utils import area_between_pictures
-from src.screen.screen_utils import draw_rectangle
-from src.screen.screen_utils import resize_area_keep_center
+from utils.screen_utils import area_between_pictures
+from utils.screen_utils import draw_rectangle
+from utils.screen_utils import resize_area_keep_center
 
 
 class WorldInteractorTest(unittest.TestCase):

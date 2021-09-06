@@ -4,7 +4,7 @@ from typing import Callable
 
 import pyautogui
 
-from screen.screen_utils import RectangularArea
+from utils.screen_utils import RectangularArea
 
 
 class WorldInteractor(object):
