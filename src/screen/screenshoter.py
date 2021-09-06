@@ -4,6 +4,8 @@ import pyautogui
 
 from src.resources.images_map import IMAGE_MAP
 from src.resources.images_map import ScreenPart
+from src.screen.screen_utils import RectangularArea
+from src.screen.screen_utils import area_between_pictures
 
 """
 Identify Areas of the game screen.
@@ -17,7 +19,7 @@ class InitMarkup(object):
     else:
       self.full_screen = pyautogui.screenshot()  # returns a Pillow/PIL Image object, and saves it to a file
 
-  def identify_inventory_tab(self):
+  def identify_inventory_tab(self) -> RectangularArea:
     icon_backpack_img = IMAGE_MAP[ScreenPart.ICON_BACKPACK_TAB]
     icon_view_your_wealth_inventory = IMAGE_MAP[ScreenPart.ICON_VIEW_YOUR_WEALTH_INVENTORY]
 
@@ -35,17 +37,13 @@ class InitMarkup(object):
       _, _, mnLoc, _ = cv2.minMaxLoc(icon_wealth_found)
       wealth_x, wealth_y = mnLoc
 
-      icon_side_size, _ = icon_backpack_img.shape[:2]
+      icon_size_rows, icon_size_cols = icon_backpack_img.shape[:2]
 
-      inventory_width = 2 * (icon_side_size + wealth_x - backpack_x) + 20
+      inventory_width = 2 * (icon_size_rows + wealth_x - backpack_x) + 20
       inventory_height = wealth_y - backpack_y
 
       inventory_start_x = backpack_x - 10
-      inventory_start_y = backpack_y + icon_side_size
-
-      # Draw the rectangle:
-      # Step 2: Get the size of the template. This is the same size as the match.
-      # trows, tcols = icon_backpack_img.shape[:2]
+      inventory_start_y = backpack_y + icon_size_rows
 
       # Step 3: Draw the rectangle on large_image
       cv2.rectangle(self.full_screen, (inventory_start_x, inventory_start_y),
@@ -56,3 +54,8 @@ class InitMarkup(object):
 
       # The image is only displayed if we call this
       cv2.waitKey(0)
+
+  def grab_game_screen(self, screen: PIL.Image.Image) -> RectangularArea:
+    top = IMAGE_MAP[ScreenPart.ICON_ACTON_BAR_TOP_CORNER]
+    bottom = IMAGE_MAP[ScreenPart.LAYOUT_RIGHT_BOTTOM_ICON]
+    return area_between_pictures(screen, top, bottom)
