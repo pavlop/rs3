@@ -10,7 +10,7 @@ class Actions(object):
     float(random.randrange(val * 10000)) / 10000
 
   def next_target(self):
-    pyautogui.hotkey('`')
+    pyautogui.hotkey('n')
 
   def attack_skill(self, char):
     pyautogui.hotkey(char)
