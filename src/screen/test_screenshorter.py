@@ -32,7 +32,7 @@ class TestMapProvider(unittest.TestCase):
   def test_grab_rs3_screen(self):
     fake_screen = IMAGE_MAP[ScreenPart.TEST_SCREENSHOT_FULL_SCREEN3]
     screenshoter = InitMarkup(screen=fake_screen)
-    screenshoter.grab_game_screen()
+    # screenshoter.grab_game_screen()
 
 
 if __name__ == '__main__':

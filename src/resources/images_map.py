@@ -26,8 +26,8 @@ class ScreenPart(Enum):
   TEST_SCREENSHOT_FULL_SCREEN3 = 1003
   TEST_SCREENSHOT_FULL_SCREEN4 = 1004
   TEST_TWO_MARKERS_SMALL = 1005
-  TEST_MARKERS_SMALL_ORANGE = 1006
-  TEST_MARKERS_SMALL_RED = 1007
+  TEST_MARKERS_TOP_ORANGE = 1006
+  TEST_MARKERS_BOTTOM_RED = 1007
 
 
 IMAGE_FILES_MAP = {
@@ -41,8 +41,8 @@ IMAGE_FILES_MAP = {
   ScreenPart.TEST_SCREENSHOT_FULL_SCREEN3: 'resources/test/full_screenshot_3.png',
   ScreenPart.TEST_SCREENSHOT_FULL_SCREEN4: 'resources/test/full_screenshot_4.png',
   ScreenPart.TEST_TWO_MARKERS_SMALL: 'resources/test/test_two_markers_small.png',
-  ScreenPart.TEST_MARKERS_SMALL_ORANGE: 'resources/test/test_marker_small_orange.png',
-  ScreenPart.TEST_MARKERS_SMALL_RED: 'resources/test/test_marker_small_red.png',
+  ScreenPart.TEST_MARKERS_TOP_ORANGE: 'resources/test/test_marker_small_orange.png',
+  ScreenPart.TEST_MARKERS_BOTTOM_RED: 'resources/test/test_marker_small_red.png',
 
 }
 
