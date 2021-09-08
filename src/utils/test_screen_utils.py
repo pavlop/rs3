@@ -2,12 +2,18 @@ import unittest
 
 from src.resources.images_map import IMAGE_MAP
 from src.resources.images_map import ScreenPart
-from utils.screen_utils import RectangularArea, area_of_picture
+from utils.screen_utils import RectangularArea, area_of_picture, take_screenshot, identify_inventory_tab, \
+  show_image_with_rectangle, inventory_slot_1
 from utils.screen_utils import area_between_pictures
 from utils.screen_utils import resize_area_keep_center
 
 
 class TestMapProvider(unittest.TestCase):
+
+  def testRectangularArea(self):
+    area = RectangularArea(100, 100, 200, 200)
+    self.assertEqual(area.middle_x, 150)
+    self.assertEqual(area.middle_y, 150)
 
   def testAreaOfPicture(self):
     screen = IMAGE_MAP[ScreenPart.TEST_TWO_MARKERS_SMALL]
@@ -25,6 +31,10 @@ class TestMapProvider(unittest.TestCase):
     screen = IMAGE_MAP[ScreenPart.TEST_TWO_MARKERS_SMALL]
     missing_img = IMAGE_MAP[ScreenPart.ICON_BACKPACK_TAB]
     self.assertEqual(None, area_of_picture(screen, missing_img))
+
+  def testAreaForRealScreenshot(self):
+    screen = take_screenshot()
+    self.assertIsNotNone(area_of_picture(screen, screen))
 
   def testRectangularAreaTwoPictures(self):
     screen = IMAGE_MAP[ScreenPart.TEST_TWO_MARKERS_SMALL]
@@ -49,6 +59,12 @@ class TestMapProvider(unittest.TestCase):
   #   bottom = IMAGE_MAP[ScreenPart.LAYOUT_RIGHT_BOTTOM_ICON]
   #   area = area_between_pictures(screen, top, bottom)
   #   draw_rectangle(screen, resize_area_keep_center(area, 0.3))
+
+  def testDemoInventory(self):
+    screen = IMAGE_MAP[ScreenPart.TEST_SCREENSHOT_FULL_SCREEN_MINE]
+    inventory = identify_inventory_tab(screen)
+    first_slot = inventory_slot_1(inventory)
+    show_image_with_rectangle(screen, first_slot)
 
 
 if __name__ == '__main__':
