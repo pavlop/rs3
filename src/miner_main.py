@@ -1,7 +1,5 @@
 import logging
 import os
-import sys
-import threading
 import time
 
 from src.resources.images_map import IMAGE_MAP
@@ -21,39 +19,30 @@ def main():
   world.update_screen()
   world.update_game_area_with_corners(IMAGE_MAP[ScreenPart.ICON_ALL_CHATS],
                                       IMAGE_MAP[ScreenPart.LAYOUT_RIGHT_BOTTOM_ICON])
-  # Area is the whole screen
-  # area = area_of_picture(world_state.screen, world_state.screen)
 
   # Thread 1: Screen Updater
   my_logger.log("Main: start updating world")
-  world_state_delta_sec = 0.1
-  world_state_thread = threading.Thread(target=world.keep_updating_screen, args=(world_state_delta_sec,))
-  world_state_thread.start()
+  world.run_thread(delta_sec=0.1)
 
   # Thread 2: Track Label
   my_logger.log("Main: start tracking label")
-  label_checker_delta_sec = 0.05
   target_label = IMAGE_MAP[ScreenPart.MINING_LABEL_ANY]
-  label_checker = ScreenAreaChecker(world, target_label, world.full_area)
-  label_checker_thread = threading.Thread(target=label_checker.keep_checking_label, args=(label_checker_delta_sec,))
-  label_checker_thread.start()
+  mine_label_checker = ScreenAreaChecker(world, target_label, world.full_area)
+  mine_label_checker.run_thread(check_delta_sec=0.05)
 
   # Thread 3: Mouse mover
   my_logger.log("Main: mouse mover")
-  mouse_move_sec = 0.5
   mouse_mover = WorldMouseMover(world)
-  mouse_mover_thread = threading.Thread(target=mouse_mover.keep_moving_mouse_in_area, args=(mouse_move_sec,))
-  mouse_mover_thread.start()
+  mouse_mover.run_thread(mouse_move_sec=0.5)
 
   # Thread 4: MineClicker
   my_logger.log("Main: mine clicker")
   mine_clicker = MineClicker(world)
-  mine_clicker_thread = threading.Thread(target=mine_clicker.keep_clicking_mine, args=(0.05,))
-  mine_clicker_thread.start()
+  mine_clicker.run_thread(delta_check_sec=0.05)
 
   # Main Thread: Quit Program
   # sleep 20 min
-  time.sleep(20*60)
+  time.sleep(20 * 60)
   my_logger.log("Main: Done")
   os._exit(1)
 

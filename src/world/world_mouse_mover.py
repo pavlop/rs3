@@ -1,4 +1,5 @@
 import random
+import threading
 import time
 
 import pyautogui
@@ -59,3 +60,7 @@ class WorldMouseMover(object):
       else:
         was_waiting = True
         time.sleep(2)
+
+  def run_thread(self, mouse_move_sec):
+    mouse_mover_thread = threading.Thread(target=self.keep_moving_mouse_in_area, args=(mouse_move_sec,))
+    mouse_mover_thread.start()

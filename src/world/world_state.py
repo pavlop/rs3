@@ -1,3 +1,4 @@
+import threading
 import time
 
 import PIL
@@ -37,3 +38,7 @@ class WorldState(object):
       self.my_logger.log_every(10, "Taking screenshot")
       self.screen = numpy.array(pyautogui.screenshot())
       time.sleep(update_sec)
+
+  def run_thread(self, delta_sec: int):
+    world_state_thread = threading.Thread(target=self.keep_updating_screen, args=(delta_sec,))
+    world_state_thread.start()

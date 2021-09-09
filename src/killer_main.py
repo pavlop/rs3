@@ -1,4 +1,3 @@
-
 import time
 
 from src import killer
@@ -6,6 +5,7 @@ from src import killer
 
 def main():
   killer.KillerScript(sec_per_monster=14, rest_after_n_iterations=2).start()
+
 
 if __name__ == "__main__":
   print("3...")
@@ -16,6 +16,3 @@ if __name__ == "__main__":
   time.sleep(0.5)
   print("satrted")
   main()
-
-
-

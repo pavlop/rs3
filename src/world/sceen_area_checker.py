@@ -1,7 +1,7 @@
+import threading
 import time
 
 import PIL
-import pyautogui
 from PIL import Image
 
 from utils.screen_utils import RectangularArea, area_of_picture, MyLogger
@@ -34,10 +34,6 @@ class ScreenAreaChecker(object):
       self.my_logger.log_every(100, "label_found: " + str(label_found))
       self.world.need_mouse_move = False
 
-      # # start mining
-      # pyautogui.click()
-      # time.sleep(5)
-      #
-      # # click on inventory
-      # pyautogui.click(x=self.world.inventory_slot_1.middle_x, y=self.world.inventory_slot_1.middle_y)
-      # self.world.need_mouse_move = True
+  def run_thread(self, check_delta_sec: int):
+    label_checker_thread = threading.Thread(target=self.keep_checking_label, args=(check_delta_sec,))
+    label_checker_thread.start()
