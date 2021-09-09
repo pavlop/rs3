@@ -1,6 +1,6 @@
 import time
 
-from src import actions
+from killer import actions
 
 
 class KillerScript(object):
@@ -10,7 +10,7 @@ class KillerScript(object):
     self.iterations = 100
     self.rest_after_n_iterations = rest_after_n_iterations
     self.sec_to_rest = 15
-    self.actions = actions.Actions()
+    self.actions = actions.KillActions()
 
   def start(self) -> None:
     start_time = time.time()

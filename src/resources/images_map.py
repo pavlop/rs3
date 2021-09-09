@@ -14,6 +14,7 @@ class ScreenPart(Enum):
   LAYOUT_RIGHT_BOTTOM_ICON = 3
   ICON_ACTON_BAR_TOP_CORNER = 4
   ICON_ALL_CHATS = 5
+  BUTTON_BEGIN_PROJECT = 6
 
   # World objects 100
   MINING_LABEL_ANY = 101
@@ -36,6 +37,7 @@ IMAGE_FILES_MAP = {
   ScreenPart.ICON_VIEW_YOUR_WEALTH_INVENTORY: 'resources/menu/icon_view_your_wealth_inventory.png',
   ScreenPart.ICON_BACKPACK_TAB: 'resources/menu/icon_backpack_tab.bmp',
   ScreenPart.ICON_ALL_CHATS: 'resources/menu/icon_all_chats.png',
+  ScreenPart.BUTTON_BEGIN_PROJECT: 'resources/menu/button_begin_project.png',
   ScreenPart.ATTACK_LABEL: 'resources/labels/attack_label.png',
   ScreenPart.MINING_LABEL_ANY: 'resources/labels/mining_any_2.png',
   ScreenPart.TEST_SCREENSHOT_FULL_SCREEN1: 'resources/test/full_screenshot_1.png',

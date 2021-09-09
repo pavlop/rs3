@@ -1,12 +1,15 @@
 import logging
+import os
+import sys
 import threading
 import time
 
 from src.resources.images_map import IMAGE_MAP
 from src.resources.images_map import ScreenPart
 from utils.screen_utils import MyLogger
-from world.label_checker import LabelChecker
-from world.world_interactor import WorldMouseMover
+from world.mine_clicker import MineClicker
+from world.sceen_area_checker import ScreenAreaChecker
+from world.world_mouse_mover import WorldMouseMover
 from world.world_state import WorldState
 
 
@@ -29,9 +32,9 @@ def main():
 
   # Thread 2: Track Label
   my_logger.log("Main: start tracking label")
-  label_checker_delta_sec = 0.1
+  label_checker_delta_sec = 0.05
   target_label = IMAGE_MAP[ScreenPart.MINING_LABEL_ANY]
-  label_checker = LabelChecker(world, target_label, world.full_area)
+  label_checker = ScreenAreaChecker(world, target_label, world.full_area)
   label_checker_thread = threading.Thread(target=label_checker.keep_checking_label, args=(label_checker_delta_sec,))
   label_checker_thread.start()
 
@@ -42,42 +45,17 @@ def main():
   mouse_mover_thread = threading.Thread(target=mouse_mover.keep_moving_mouse_in_area, args=(mouse_move_sec,))
   mouse_mover_thread.start()
 
-  my_logger.log("Main: Done")
+  # Thread 4: MineClicker
+  my_logger.log("Main: mine clicker")
+  mine_clicker = MineClicker(world)
+  mine_clicker_thread = threading.Thread(target=mine_clicker.keep_clicking_mine, args=(0.05,))
+  mine_clicker_thread.start()
 
-  # # screen = IMAGE_MAP[ScreenPart.TEST_SCREENSHOT_FULL_SCREEN4]
-  # screen = numpy.array(pyautogui.screenshot())
-  # # screen = take_screenshot()
-  # area = area_of_picture(screen, screen)
-  # #
-  # # top = IMAGE_MAP[ScreenPart.ICON_ACTON_BAR_TOP_CORNER]
-  # # bottom = IMAGE_MAP[ScreenPart.LAYOUT_RIGHT_BOTTOM_ICON]
-  # target_label = IMAGE_MAP[ScreenPart.ATTACK_LABEL]
-  # logging.info("Searching for target_label", target_label)
-  # # area = area_between_pictures(screen, top, bottom)
-  #
-  # # Pause
-  # show_image_with_rectangle(screen, area)
-  #
-  #
-  # # Main objects
-  # checker = LabelChecker(screen, target_label, area)
-  # interactor = WorldInteractor()
-  #
-  # # Thread that updates screenshots
-  # interactor_updater = WorldInteractorUpdater(interactor)
-  # screenshoter_thread = threading.Thread(target=interactor_updater.keep_updating, args=())
-  # logging.info("Main    : before running screenshoter_thread")
-  # screenshoter_thread.start()
-  #
-  # # Thread that moves mouse
-  # # time.sleep(1)
-  # # checker_thread = threading.Thread(target=interactor.continue_check, args=(checker,))
-  # # logging.info("Main    : before running checker_thread")
-  # # checker_thread.start()
-  # #
-  # # logging.info("Main    : wait for the thread to finish")
-  # # # x.join()
-  # # logging.info("Main    : all done")
+  # Main Thread: Quit Program
+  # sleep 20 min
+  time.sleep(20*60)
+  my_logger.log("Main: Done")
+  os._exit(1)
 
 
 if __name__ == "__main__":

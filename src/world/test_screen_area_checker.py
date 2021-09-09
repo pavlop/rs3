@@ -4,7 +4,7 @@ from src.resources.images_map import IMAGE_MAP
 from src.resources.images_map import ScreenPart
 from utils.screen_utils import area_between_pictures, area_of_picture, RectangularArea
 from utils.screen_utils import resize_area_keep_center
-from world.label_checker import LabelChecker
+from world.sceen_area_checker import ScreenAreaChecker
 from world.world_state import WorldState
 
 
@@ -23,7 +23,7 @@ class LabelCheckerTest(unittest.TestCase):
     area = area_between_pictures(screen, top, bottom)
     static_world = WorldState()
     static_world.update_screen_with_img(screen)
-    checker = LabelChecker(static_world, IMAGE_MAP[ScreenPart.ICON_BACKPACK_TAB], area)
+    checker = ScreenAreaChecker(static_world, IMAGE_MAP[ScreenPart.ICON_BACKPACK_TAB], area)
     self.assertIsNotNone(checker.check())
 
   def testCheckStaticNotFound(self):
@@ -34,7 +34,7 @@ class LabelCheckerTest(unittest.TestCase):
     area_small = resize_area_keep_center(area, 0.2)
     static_world = WorldState()
     static_world.update_screen_with_img(screen)
-    checker = LabelChecker(static_world, IMAGE_MAP[ScreenPart.ICON_BACKPACK_TAB], area_small)
+    checker = ScreenAreaChecker(static_world, IMAGE_MAP[ScreenPart.ICON_BACKPACK_TAB], area_small)
     self.assertIsNone(checker.check())
     # show_image_with_rectangle(screen, resize_area_keep_center(area, 0.5))
 
@@ -45,7 +45,7 @@ class LabelCheckerTest(unittest.TestCase):
     area = area_between_pictures(screen, top, bottom)
     static_world = WorldState()
     static_world.update_screen_with_img(screen)
-    checker = LabelChecker(static_world, IMAGE_MAP[ScreenPart.ICON_BACKPACK_TAB], area)
+    checker = ScreenAreaChecker(static_world, IMAGE_MAP[ScreenPart.ICON_BACKPACK_TAB], area)
 
     # Label found on large area
     self.assertIsNotNone(checker.check())
@@ -59,7 +59,7 @@ class LabelCheckerTest(unittest.TestCase):
     full_area = area_of_picture(screen, screen)
     static_world = WorldState()
     static_world.update_screen_with_img(screen)
-    checker = LabelChecker(static_world, IMAGE_MAP[ScreenPart.MINING_LABEL_ANY], full_area)
+    checker = ScreenAreaChecker(static_world, IMAGE_MAP[ScreenPart.MINING_LABEL_ANY], full_area)
     label_found = checker.check()
     self.assertIsNotNone(label_found)
     # print(label_found)

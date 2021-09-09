@@ -53,7 +53,7 @@ class WorldMouseMover(object):
           self.move_mouse_in_area()
           was_waiting = False
         else:
-          self.my_logger.log_every(100, "Moving mouse")
+          self.my_logger.log_every(1000, "Moving mouse")
           self.move_mouse_nearby_in_area()
         time.sleep(wait_time)
       else:
