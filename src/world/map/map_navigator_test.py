@@ -11,33 +11,32 @@ import time
 
 
 class MapNavigatorTest(unittest.TestCase):
+  first_town_icon = IMAGE_MAP[ScreenPart.FIRST_TOWN_TELEPORT_ICON]
+  bank_label = IMAGE_MAP[ScreenPart.BANK_MINIMAP_LABEL]
+  teleport_icon = IMAGE_MAP[ScreenPart.TELEPORT_MINIMAP_ICON]
 
   def testGoToBankeer(self):
     time.sleep(2)
-    screen = take_screenshot()
-    bank_label = IMAGE_MAP[ScreenPart.BANK_MINIMAP_LABEL]
-    teleport_icon = IMAGE_MAP[ScreenPart.TELEPORT_MINIMAP_ICON]
-    first_town_icon = IMAGE_MAP[ScreenPart.FIRST_TOWN_TELEPORT_ICON]
+    self.navigateToBankeer()
 
-    teleport_icon_location = area_of_picture(screen, teleport_icon).middle_x, area_of_picture(screen, teleport_icon).middle_y
+  def isIconVisible(self, icon):
+    return area_of_picture(take_screenshot(), icon) is not None
+
+  def teleportTo(self, destination):
+    screen = take_screenshot()
+    teleport_icon_location = area_of_picture(screen, self.teleport_icon).middle_x, area_of_picture(screen, self.teleport_icon).middle_y
     pyautogui.click(teleport_icon_location)
-
-    wait_until(self.isFirstTownFound(first_town_icon), 1, 0.1)
+    wait_until(self.isIconVisible(destination), 1, 0.1)
     screen = take_screenshot()
-    first_town_icon_location = area_of_picture(screen, first_town_icon).middle_x, area_of_picture(screen, first_town_icon).middle_y
-
+    first_town_icon_location = area_of_picture(screen, destination).middle_x, area_of_picture(screen, destination).middle_y
     pyautogui.click(first_town_icon_location)
     time.sleep(25)
-    screen = take_screenshot()
 
-    bankeer_location_first_town = area_of_picture(screen, bank_label).middle_x+5, area_of_picture(screen, bank_label).middle_y+5
+  def navigateToBankeer(self):
+    self.teleportTo(self.first_town_icon)
+    screen = take_screenshot()
+    bankeer_location_first_town = area_of_picture(screen, self.bank_label).middle_x+5, area_of_picture(screen, self.bank_label).middle_y+5
     pyautogui.click(bankeer_location_first_town)
-
-    # show_image_with_rectangle(screen, area_of_picture(screen, bank_label))
-
-  def isFirstTownFound(self, first_town_icon):
-    screen = take_screenshot()
-    return area_of_picture(screen, first_town_icon) is not None
 
 
 if __name__ == '__main__':
