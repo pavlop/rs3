@@ -5,6 +5,7 @@ from utils.screen_utils import RectangularArea, area_of_picture, take_screenshot
   show_image_with_rectangle, inventory_slot_1
 from utils.screen_utils import area_between_pictures
 from utils.screen_utils import resize_area_keep_center
+from utils.ui_interaction_utils import wait_until
 import pyautogui
 import time
 
@@ -20,10 +21,11 @@ class MapNavigatorTest(unittest.TestCase):
 
     teleport_icon_location = area_of_picture(screen, teleport_icon).middle_x, area_of_picture(screen, teleport_icon).middle_y
     pyautogui.click(teleport_icon_location)
-    time.sleep(1)
-    screen = take_screenshot()
 
+    wait_until(self.isFirstTownFound(first_town_icon), 1, 0.1)
+    screen = take_screenshot()
     first_town_icon_location = area_of_picture(screen, first_town_icon).middle_x, area_of_picture(screen, first_town_icon).middle_y
+
     pyautogui.click(first_town_icon_location)
     time.sleep(25)
     screen = take_screenshot()
@@ -32,6 +34,10 @@ class MapNavigatorTest(unittest.TestCase):
     pyautogui.click(bankeer_location_first_town)
 
     # show_image_with_rectangle(screen, area_of_picture(screen, bank_label))
+
+  def isFirstTownFound(self, first_town_icon):
+    screen = take_screenshot()
+    return area_of_picture(screen, first_town_icon) is not None
 
 
 if __name__ == '__main__':
