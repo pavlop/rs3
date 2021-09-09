@@ -8,7 +8,7 @@ project_root = Path(dirname(dirname(__file__)))
 
 
 class ScreenPart(Enum):
-  # UI elements
+  # UI elements.
   ICON_BACKPACK_TAB = 1
   ICON_VIEW_YOUR_WEALTH_INVENTORY = 2
   LAYOUT_RIGHT_BOTTOM_ICON = 3
