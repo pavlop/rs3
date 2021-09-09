@@ -16,3 +16,4 @@ class MineClickerTest(unittest.TestCase):
     self.assertIsNotNone(button_deposit)
     self.assertIsNotNone(button_begin_project)
     # show_image_with_rectangle(screen, button_deposit)
+    # show_image_with_rectangle(screen, button_begin_project)

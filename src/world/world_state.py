@@ -35,8 +35,8 @@ class WorldState(object):
 
   def keep_updating_screen(self, update_sec=0.5):
     while True:
-      self.my_logger.log_every(10, "Taking screenshot")
-      self.screen = numpy.array(pyautogui.screenshot())
+      self.my_logger.log_every(100, "Taking screenshot")
+      self.screen = take_screenshot()
       time.sleep(update_sec)
 
   def run_thread(self, delta_sec: int):

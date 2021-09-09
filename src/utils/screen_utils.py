@@ -16,11 +16,11 @@ class RectangularArea(object):
     self.bottom_x = bottom_x
     self.bottom_y = bottom_y
 
-    self.height = bottom_x - top_x
-    self.width = bottom_y - top_y
+    self.height = abs(bottom_y - top_y)
+    self.width = abs(bottom_x - top_x)
 
-    self.middle_x = self.top_x + self.width / 2
-    self.middle_y = self.top_y + self.height / 2
+    self.middle_x = int(self.top_x + self.width / 2)
+    self.middle_y = int(self.top_y + self.height / 2)
 
   def __eq__(self, other):
     # return True

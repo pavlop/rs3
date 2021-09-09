@@ -39,7 +39,7 @@ def main():
   # Thread 4: smelt
   my_logger.log("Main: smelt")
   smelter = Smelter(world)
-  smelter.run_thread(project_sec=160)
+  smelter.run_thread(project_sec=70)
 
   # Main Thread: Quit Program
   # sleep 20 min
