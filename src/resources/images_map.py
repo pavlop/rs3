@@ -29,7 +29,13 @@ class ScreenPart(Enum):
   TEST_MARKERS_TOP_ORANGE = 1006
   TEST_MARKERS_BOTTOM_RED = 1007
   TEST_SCREENSHOT_FULL_SCREEN_MINE = 1009
+  TEST_MINIMAP_UNDER_LUMBRIDGE = 1021
+  TEST_MINIMAP_FIRST_TOWN = 1022
 
+  # Map related images (world map + minimap)
+  VARROCK_MAP = 10002
+  BANK_MINIMAP_LABEL = 10003
+  BANK_LABEL = 10004
 
 IMAGE_FILES_MAP = {
   ScreenPart.ICON_ACTON_BAR_TOP_CORNER: 'resources/menu/icon_acton_bar_top_corner.bmp',
@@ -48,6 +54,11 @@ IMAGE_FILES_MAP = {
   ScreenPart.TEST_TWO_MARKERS_SMALL: 'resources/test/test_two_markers_small.png',
   ScreenPart.TEST_MARKERS_TOP_ORANGE: 'resources/test/test_marker_small_orange.png',
   ScreenPart.TEST_MARKERS_BOTTOM_RED: 'resources/test/test_marker_small_red.png',
+  ScreenPart.TEST_MINIMAP_UNDER_LUMBRIDGE: 'resources/test/minimap_under_lumbridge.png',
+  ScreenPart.TEST_MINIMAP_FIRST_TOWN: 'resources/test/minimap_first_town_test.png',
+  ScreenPart.BANK_MINIMAP_LABEL: 'resources/labels/bank_minimap_label.png',
+  ScreenPart.BANK_LABEL: 'resources/labels/bank_label.png',
+  ScreenPart.VARROCK_MAP: 'resources/map/varrock_map.png',
 }
 
 # Convert string paths to absolute paths
