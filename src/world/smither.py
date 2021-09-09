@@ -16,6 +16,7 @@ class Smither(object):
     self.my_logger = MyLogger()
 
   def keep_smithing(self, delta_check_sec=0.05):
+    deposit_materials_button = BUTTON_DEPOSIT_ALL_MATERIALS
     begin_project_button = area_of_picture(self.world.screen, IMAGE_MAP[ScreenPart.BUTTON_BEGIN_PROJECT])
 
 
