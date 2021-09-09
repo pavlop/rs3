@@ -24,13 +24,11 @@ class ScreenAreaChecker(object):
     return area_result
 
   def keep_checking_label(self, update_sec=0.5):
-
     while True:
       label_found = self.check()
       if label_found is None:
         time.sleep(update_sec)
         continue
-
       self.my_logger.log_every(100, "label_found: " + str(label_found))
       self.world.need_mouse_move = False
 

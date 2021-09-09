@@ -20,6 +20,7 @@ class ScreenPart(Enum):
   # World objects 100
   MINING_LABEL_ANY = 101
   ATTACK_LABEL = 102
+  SMELT_LABEL = 103
 
   # Test objects 1000
   TEST_SCREENSHOT_FULL_SCREEN1 = 1001
@@ -38,14 +39,25 @@ class ScreenPart(Enum):
   FIRST_TOWN_TELEPORT_ICON = 10005
 
 IMAGE_FILES_MAP = {
+  # Menu
   ScreenPart.ICON_ACTON_BAR_TOP_CORNER: 'resources/menu/icon_acton_bar_top_corner.bmp',
   ScreenPart.LAYOUT_RIGHT_BOTTOM_ICON: 'resources/menu/layout_right_bottom_icon.png',
   ScreenPart.ICON_VIEW_YOUR_WEALTH_INVENTORY: 'resources/menu/icon_view_your_wealth_inventory.png',
   ScreenPart.ICON_BACKPACK_TAB: 'resources/menu/icon_backpack_tab.bmp',
   ScreenPart.ICON_ALL_CHATS: 'resources/menu/icon_all_chats.png',
   ScreenPart.BUTTON_BEGIN_PROJECT: 'resources/menu/button_begin_project.png',
+  ScreenPart.BUTTON_DEPOSIT_ALL_MATERIALS: 'resources/menu/button_deposit_all_materials.png',
+
+  # Labels
   ScreenPart.ATTACK_LABEL: 'resources/labels/attack_label.png',
   ScreenPart.MINING_LABEL_ANY: 'resources/labels/mining_any_2.png',
+  ScreenPart.SMELT_LABEL: 'resources/labels/smelt_label.png',
+  ScreenPart.FIRST_TOWN_TELEPORT_ICON: 'resources/labels/first_town_teleport_icon.png',
+  ScreenPart.TELEPORT_MINIMAP_ICON: 'resources/labels/teleport_minimap_icon.png',
+  ScreenPart.BANK_LABEL: 'resources/labels/bank_label.png',
+  ScreenPart.BANK_MINIMAP_LABEL: 'resources/labels/bank_minimap_label.png',
+
+  # Test
   ScreenPart.TEST_SCREENSHOT_FULL_SCREEN1: 'resources/test/full_screenshot_1.png',
   ScreenPart.TEST_SCREENSHOT_FULL_SCREEN2: 'resources/test/full_screenshot_2.png',
   ScreenPart.TEST_SCREENSHOT_FULL_SCREEN3: 'resources/test/full_screenshot_3.png',
@@ -55,10 +67,6 @@ IMAGE_FILES_MAP = {
   ScreenPart.TEST_MARKERS_TOP_ORANGE: 'resources/test/test_marker_small_orange.png',
   ScreenPart.TEST_MARKERS_BOTTOM_RED: 'resources/test/test_marker_small_red.png',
   ScreenPart.TEST_MINIMAP_FIRST_TOWN: 'resources/test/minimap_first_town_test.png',
-  ScreenPart.BANK_MINIMAP_LABEL: 'resources/labels/bank_minimap_label.png',
-  ScreenPart.FIRST_TOWN_TELEPORT_ICON: 'resources/labels/first_town_teleport_icon.png',
-  ScreenPart.TELEPORT_MINIMAP_ICON: 'resources/labels/teleport_minimap_icon.png',
-  ScreenPart.BANK_LABEL: 'resources/labels/bank_label.png',
 }
 
 # Convert string paths to absolute paths
