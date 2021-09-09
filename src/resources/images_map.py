@@ -32,7 +32,8 @@ class ScreenPart(Enum):
   TEST_MARKERS_TOP_ORANGE = 1006
   TEST_MARKERS_BOTTOM_RED = 1007
   TEST_SCREENSHOT_FULL_SCREEN_MINE = 1009
-  TEST_MINIMAP_FIRST_TOWN = 1021
+  TEST_MINIMAP_FIRST_TOWN = 1010
+  TEST_FULL_SCREENSHOT_SMELT_INTERFACE = 1011
 
   # Map related images (world map + minimap)
   BANK_MINIMAP_LABEL = 10003
@@ -68,6 +69,7 @@ IMAGE_FILES_MAP = {
   ScreenPart.TEST_MARKERS_TOP_ORANGE: 'resources/test/test_marker_small_orange.png',
   ScreenPart.TEST_MARKERS_BOTTOM_RED: 'resources/test/test_marker_small_red.png',
   ScreenPart.TEST_MINIMAP_FIRST_TOWN: 'resources/test/minimap_first_town_test.png',
+  ScreenPart.TEST_FULL_SCREENSHOT_SMELT_INTERFACE: 'resources/test/full_screenshot_smelt_interface.png',
 }
 
 # Convert string paths to absolute paths
