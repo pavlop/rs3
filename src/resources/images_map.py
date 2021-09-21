@@ -22,6 +22,8 @@ class ScreenPart(Enum):
   MINING_LABEL_ANY = 101
   ATTACK_LABEL = 102
   SMELT_LABEL = 103
+  SMITH_LABEL = 104
+  CHOP_LABEL = 105
 
   # Test objects 1000
   TEST_SCREENSHOT_FULL_SCREEN1 = 1001
@@ -54,10 +56,12 @@ IMAGE_FILES_MAP = {
   ScreenPart.ATTACK_LABEL: 'resources/labels/attack_label.png',
   ScreenPart.MINING_LABEL_ANY: 'resources/labels/mining_any_2.png',
   ScreenPart.SMELT_LABEL: 'resources/labels/smelt_label.png',
+  ScreenPart.SMITH_LABEL: 'resources/labels/smith_label.png',
   ScreenPart.FIRST_TOWN_TELEPORT_ICON: 'resources/labels/first_town_teleport_icon.png',
   ScreenPart.TELEPORT_MINIMAP_ICON: 'resources/labels/teleport_minimap_icon.png',
   ScreenPart.BANK_LABEL: 'resources/labels/bank_label.png',
   ScreenPart.BANK_MINIMAP_LABEL: 'resources/labels/bank_minimap_label.png',
+  ScreenPart.CHOP_LABEL: 'resources/labels/chop_label.png',
 
   # Test
   ScreenPart.TEST_SCREENSHOT_FULL_SCREEN1: 'resources/test/full_screenshot_1.png',

@@ -16,20 +16,22 @@ class Smelter(object):
     self.my_logger = MyLogger()
 
   def smith_iteration(self):
-    time.sleep(2)
-    deposit_materials_button = area_of_picture(self.world.screen, IMAGE_MAP[ScreenPart.BUTTON_DEPOSIT_ALL_MATERIALS])
-    # if deposit_materials_button is None:
-    #   os._exit(1)
-    # show_image_with_rectangle(self.world.screen, None)
-    # show_image_with_rectangle(IMAGE_MAP[ScreenPart.BUTTON_DEPOSIT_ALL_MATERIALS], None)
+    time.sleep(1)
+    deposit_materials_button = area_of_picture(take_screenshot(), IMAGE_MAP[ScreenPart.BUTTON_DEPOSIT_ALL_MATERIALS], threshold=0.7)
+    if deposit_materials_button is None:
+      self.my_logger.log("deposit_materials_button not found")
+      # show_image_with_rectangle(IMAGE_MAP[ScreenPart.BUTTON_DEPOSIT_ALL_MATERIALS], None)
+    else:
+      pyautogui.click(x=deposit_materials_button.middle_x, y=deposit_materials_button.middle_y)
+      time.sleep(2)
 
-    pyautogui.click(x=deposit_materials_button.middle_x, y=deposit_materials_button.middle_y)
-    time.sleep(2)
+    begin_project_button = area_of_picture(self.world.screen, IMAGE_MAP[ScreenPart.BUTTON_BEGIN_PROJECT], threshold=0.7)
+    if begin_project_button is None:
+      self.my_logger.log("begin_project_button not found")
+      show_image_with_rectangle(self.world.screen, None)
 
-    begin_project_button = area_of_picture(self.world.screen, IMAGE_MAP[ScreenPart.BUTTON_BEGIN_PROJECT])
     pyautogui.click(x=begin_project_button.middle_x, y=begin_project_button.middle_y)
-    self.my_logger.log("Cliecked on begin_project_button" + str(begin_project_button))
-    time.sleep(2)
+    self.my_logger.log("clicked on begin_project_button" + str(begin_project_button))
 
 
   def keep_smithing(self, project_sec=120):

@@ -27,7 +27,7 @@ def main():
 
   # Thread 2: Track Label
   my_logger.log("Main: start tracking label")
-  target_label = IMAGE_MAP[ScreenPart.SMELT_LABEL]
+  target_label = IMAGE_MAP[ScreenPart.SMITH_LABEL]
   smelt_checker = ScreenAreaChecker(world, target_label, world.full_area)
   smelt_checker.run_thread(check_delta_sec=0.05)
 
@@ -37,12 +37,12 @@ def main():
   mouse_mover.run_thread(mouse_move_sec=0.5)
 
   # Thread 4: smelt
-  my_logger.log("Main: smelt")
+  my_logger.log("Main: smith")
   smelter = Smelter(world)
-  smelter.run_thread(project_sec=60)
+  smelter.run_thread(project_sec=33)
 
   # Main Thread: Quit Program
-  time.sleep(120 * 60)
+  time.sleep(3 * 60 * 60)
   my_logger.log("Main: Done")
   os._exit(1)
 

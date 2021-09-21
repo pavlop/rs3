@@ -29,7 +29,7 @@ class WorldState(object):
   def update_game_area_with_corners(self, top_corner_img: PIL.Image.Image,
                                     bottom_corner_img: PIL.Image.Image):
     self.full_area = area_between_pictures(self.screen, top_corner_img, bottom_corner_img)
-    self.world_area = resize_area_keep_center(self.full_area, 0.3)
+    self.world_area = resize_area_keep_center(self.full_area, 0.5)
     self.inventory_area = identify_inventory_tab(self.screen)
     self.inventory_slot_1 = inventory_slot_1(self.inventory_area)
 

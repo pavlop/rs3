@@ -65,7 +65,7 @@ def resize_area_keep_center(area: RectangularArea, resize_coefficient: float) ->
   return RectangularArea(top_x, top_y, bottom_x, bottom_y)
 
 
-def area_of_picture(screen: PIL.Image.Image, label: PIL.Image.Image) -> RectangularArea:
+def area_of_picture(screen: PIL.Image.Image, label: PIL.Image.Image, threshold=0.8) -> RectangularArea:
   if screen is None or label is None:
     return None
   method = cv2.TM_CCOEFF_NORMED
@@ -73,7 +73,6 @@ def area_of_picture(screen: PIL.Image.Image, label: PIL.Image.Image) -> Rectangu
   min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(match)
 
   # Apply threshold
-  threshold = 0.8
   if max_val < threshold:
     return None
 
