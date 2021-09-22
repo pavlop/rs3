@@ -16,8 +16,8 @@ class WorldMouseMover(object):
     self.my_logger = MyLogger()
 
   def center_spot(self):
-    new_x = self.area.top_x + int(self.area.width/2)
-    new_y = self.area.top_y + int(self.area.height/2)
+    new_x = self.area.top_x + int(self.area.width / 2)
+    new_y = self.area.top_y + int(self.area.height / 2)
     return new_x, new_y
 
   def random_spot(self):

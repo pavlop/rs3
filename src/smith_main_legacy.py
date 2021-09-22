@@ -5,8 +5,8 @@ import time
 from src.resources.images_map import IMAGE_MAP
 from src.resources.images_map import ScreenPart
 from utils.screen_utils import MyLogger
-from world.mine_clicker import MineClicker
 from world.sceen_area_checker import ScreenAreaChecker
+from world.smelter import Smelter
 from world.world_mouse_mover import WorldMouseMover
 from world.world_state import WorldState
 
@@ -26,23 +26,22 @@ def main():
 
   # Thread 2: Track Label
   my_logger.log("Main: start tracking label")
-  target_label = IMAGE_MAP[ScreenPart.MINING_LABEL_ANY]
-  mine_label_checker = ScreenAreaChecker(world, target_label, world.full_area)
-  mine_label_checker.run_thread(check_delta_sec=0.05)
+  target_label = IMAGE_MAP[ScreenPart.SMITH_LABEL]
+  smelt_checker = ScreenAreaChecker(world, target_label, world.full_area)
+  smelt_checker.run_thread(check_delta_sec=0.05)
 
   # Thread 3: Mouse mover
   my_logger.log("Main: mouse mover")
   mouse_mover = WorldMouseMover(world)
   mouse_mover.run_thread(mouse_move_sec=0.5)
 
-  # Thread 4: MineClicker
-  my_logger.log("Main: mine clicker")
-  mine_clicker = MineClicker(world)
-  mine_clicker.run_thread(delta_check_sec=0.05)
+  # Thread 4: smelt
+  my_logger.log("Main: smith")
+  smelter = Smelter(world)
+  smelter.run_thread(project_sec=70)
 
   # Main Thread: Quit Program
-  # sleep 40 min
-  time.sleep(30 * 60)
+  time.sleep(4 * 60 * 60)
   my_logger.log("Main: Done")
   os._exit(1)
 

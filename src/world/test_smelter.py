@@ -2,8 +2,7 @@ import unittest
 
 from src.resources.images_map import IMAGE_MAP
 from src.resources.images_map import ScreenPart
-from utils.screen_utils import area_of_picture, RectangularArea, show_image_with_rectangle
-from world.mine_clicker import MineClicker
+from utils.screen_utils import area_of_picture
 
 
 class MineClickerTest(unittest.TestCase):

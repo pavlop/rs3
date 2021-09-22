@@ -5,7 +5,6 @@ import time
 from src.resources.images_map import IMAGE_MAP
 from src.resources.images_map import ScreenPart
 from utils.screen_utils import MyLogger
-from world.mine_clicker import MineClicker
 from world.sceen_area_checker import ScreenAreaChecker
 from world.smelter import Smelter
 from world.world_mouse_mover import WorldMouseMover

@@ -24,6 +24,7 @@ class ScreenPart(Enum):
   SMELT_LABEL = 103
   SMITH_LABEL = 104
   CHOP_LABEL = 105
+  HEAT_LABEL = 106
 
   # Test objects 1000
   TEST_SCREENSHOT_FULL_SCREEN1 = 1001
@@ -41,6 +42,7 @@ class ScreenPart(Enum):
   BANK_MINIMAP_LABEL = 10003
   BANK_LABEL = 10004
   FIRST_TOWN_TELEPORT_ICON = 10005
+
 
 IMAGE_FILES_MAP = {
   # Menu
@@ -62,6 +64,7 @@ IMAGE_FILES_MAP = {
   ScreenPart.BANK_LABEL: 'resources/labels/bank_label.png',
   ScreenPart.BANK_MINIMAP_LABEL: 'resources/labels/bank_minimap_label.png',
   ScreenPart.CHOP_LABEL: 'resources/labels/chop_label.png',
+  ScreenPart.HEAT_LABEL: 'resources/labels/heat_label.png',
 
   # Test
   ScreenPart.TEST_SCREENSHOT_FULL_SCREEN1: 'resources/test/full_screenshot_1.png',
