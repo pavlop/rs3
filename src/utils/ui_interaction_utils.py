@@ -11,6 +11,7 @@ def wait_until(predicate: Callable, timeout_sec=120.0, poll_rate_sec=0.25):
   print("NOTE: wait_until timed out after timeout_sec=", timeout_sec)
   return False
 
+
 def do_while(action: Callable, predicate: Callable, poll_rate_sec=0.0):
   while predicate():
     action()

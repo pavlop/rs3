@@ -1,5 +1,5 @@
 from resources.images_map import IMAGE_MAP, ScreenPart
-from utils.screen_utils import RectangularArea, area_between_pictures
+from utils.screen_utils import RectangularArea, area_between_pictures, area_of_picture
 
 
 def identify_inventory_tab(screen) -> RectangularArea:
@@ -32,3 +32,9 @@ def inventory_slot_1(inventory: RectangularArea) -> RectangularArea:
   width += 15
   return RectangularArea(inventory.top_x, inventory.top_y, inventory.top_x + height,
                          inventory.top_y + width)
+
+
+def inventory_slots_empty(screen) -> RectangularArea:
+  icon_backpack_img = IMAGE_MAP[ScreenPart.EMPTY_INVENTORY_CELL]
+  slot = area_of_picture(screen, icon_backpack_img)
+  return slot

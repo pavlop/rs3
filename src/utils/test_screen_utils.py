@@ -2,8 +2,9 @@ import unittest
 
 from src.resources.images_map import IMAGE_MAP
 from src.resources.images_map import ScreenPart
-from utils.screen_utils import RectangularArea, area_of_picture, take_screenshot, identify_inventory_tab, \
-  show_image_with_rectangle, inventory_slot_1
+from utils.menu_utils import identify_inventory_tab
+from utils.screen_utils import RectangularArea, area_of_picture, take_screenshot, \
+  show_image_with_rectangle, crop, area_of_picture_within_area
 from utils.screen_utils import area_between_pictures
 from utils.screen_utils import resize_area_keep_center
 
@@ -27,7 +28,7 @@ class TestMapProvider(unittest.TestCase):
     expected_area = RectangularArea(213, 181, 237, 205)
     self.assertEqual(expected_area, area_of_picture(screen, top_corner))
 
-  def testAreaOfPictureAbssent(self):
+  def testAreaOfPictureAbsent(self):
     screen = IMAGE_MAP[ScreenPart.TEST_TWO_MARKERS_SMALL]
     missing_img = IMAGE_MAP[ScreenPart.ICON_BACKPACK_TAB]
     self.assertEqual(None, area_of_picture(screen, missing_img))
@@ -60,11 +61,22 @@ class TestMapProvider(unittest.TestCase):
   #   area = area_between_pictures(screen, top, bottom)
   #   draw_rectangle(screen, resize_area_keep_center(area, 0.3))
 
-  def testDemoInventory(self):
-    screen = IMAGE_MAP[ScreenPart.TEST_SCREENSHOT_FULL_SCREEN_MINE]
+  # def testDemoCrop(self):
+  #   screen = IMAGE_MAP[ScreenPart.TEST_SCREENSHOT_FULL_SCREEN4]
+  #   area = RectangularArea(top_x=0, top_y=0, bottom_x=1000, bottom_y=300)
+  #   cropped = crop(screen, area)
+  #   show_image_with_rectangle(screen, None)
+  #   show_image_with_rectangle(cropped, None)
+
+  def testDemoFindWithin(self):
+    screen = IMAGE_MAP[ScreenPart.TEST_INVENTORY_WOOD]
+    empty_cell = IMAGE_MAP[ScreenPart.EMPTY_INVENTORY_CELL]
     inventory = identify_inventory_tab(screen)
-    first_slot = inventory_slot_1(inventory)
-    show_image_with_rectangle(screen, first_slot)
+    cropped = crop(screen, inventory)
+    res = area_of_picture_within_area(screen, empty_cell, inventory, threshold=0.01)
+
+    # show_image_with_rectangle(screen, None)
+    show_image_with_rectangle(cropped, res)
 
 
 if __name__ == '__main__':

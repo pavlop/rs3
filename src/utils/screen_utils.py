@@ -42,7 +42,9 @@ class RectangularArea(object):
 def show_image_with_rectangle(screen: PIL.Image.Image, area: RectangularArea):
   if area is not None:
     cv2.rectangle(img=screen, pt1=(area.top_x, area.top_y), pt2=(area.bottom_x, area.bottom_y), color=(50, 200, 50),
-                  thickness=5)
+                  thickness=3)
+  else:
+    print("ERROR: Area is empty")
   # Display the original image with the rectangle around the match.
   cv2.imshow('output', screen)
   # The image is only displayed if we call this
@@ -84,6 +86,22 @@ def area_of_picture(screen: PIL.Image.Image, label: PIL.Image.Image, threshold=0
   # Size of bottom picture should be included.
   label_height, label_width = label.shape[:2]
   return RectangularArea(top_x, top_y, top_x + label_width, top_y + label_height)
+
+
+def crop(screen: PIL.Image.Image, area: RectangularArea) -> PIL.Image.Image:
+  if screen is None:
+    return None
+  # area (x, y, w, h)
+  # roi = image[y:y+h , x:x+w]
+  return screen[area.top_y:area.bottom_y, area.top_x:area.bottom_x]
+
+
+def area_of_picture_within_area(screen: PIL.Image.Image, label: PIL.Image.Image, area: RectangularArea,
+                                threshold=0.8) -> RectangularArea:
+  if screen is None or label is None:
+    return None
+  screen_part = crop(screen, area)
+  area_of_picture(screen_part, label, threshold=threshold)
 
 
 def area_between_pictures(screen: PIL.Image.Image, top_corner_img: PIL.Image.Image,

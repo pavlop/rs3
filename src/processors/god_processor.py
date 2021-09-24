@@ -1,22 +1,19 @@
-import random
 import threading
 import time
-
-import pyautogui
 
 from processors.anvil_processor import AnvilProcessor
 from processors.forge_processor import ForgeProcessor
 from processors.mouse_processor import MouseProcessor
 from resources.images_map import IMAGE_MAP, ScreenPart
-from utils.screen_utils import MyLogger, click_current
-from utils.ui_interaction_utils import do_until
+from utils.screen_utils import click_current
 from world.sceen_area_checker import ScreenAreaChecker
 from world.tasks import Tasks
 from world.world_state import WorldState
 
 
 class GodProcessor(object):
-  def __init__(self, world: WorldState, forge_processor: ForgeProcessor, anvil_processor: AnvilProcessor, mouse_processor: MouseProcessor):
+  def __init__(self, world: WorldState, forge_processor: ForgeProcessor, anvil_processor: AnvilProcessor,
+               mouse_processor: MouseProcessor):
     self.world = world
     self.forge_processor = forge_processor
     self.anvil_processor = anvil_processor
@@ -55,7 +52,6 @@ class GodProcessor(object):
       if task == Tasks.WAIT_30_SEC:
         time.sleep(30)
         print("Sleeping for 30 sec ...")
-
 
   def run_thread(self):
     mouse_mover_thread = threading.Thread(target=self.continuous_check, args=())

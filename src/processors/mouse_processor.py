@@ -1,16 +1,12 @@
 import random
-import threading
 import time
-from typing import Callable
 from itertools import cycle
+from typing import Callable
 
 import pyautogui
 
-from resources.images_map import IMAGE_MAP, ScreenPart
-from utils.screen_utils import MyLogger, click_current
+from utils.screen_utils import MyLogger
 from utils.ui_interaction_utils import do_until
-from world.sceen_area_checker import ScreenAreaChecker
-from world.tasks import Tasks
 from world.world_state import WorldState
 
 
@@ -61,4 +57,3 @@ class MouseProcessor(object):
   def move_mouse_until(self, predicate: Callable):
     self.move_center()
     do_until(self.move_mouse_nearby_in_area, predicate)
-

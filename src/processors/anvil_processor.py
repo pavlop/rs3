@@ -1,14 +1,12 @@
-import threading
-import threading
 import time
 
 import pyautogui
 
 from resources.images_map import IMAGE_MAP, ScreenPart
 from utils.screen_utils import MyLogger, area_of_picture, take_screenshot
+from utils.ui_interaction_utils import wait_until
 from world.tasks import Tasks
 from world.world_state import WorldState
-from utils.ui_interaction_utils import wait_until
 
 
 class AnvilProcessor(object):
@@ -36,6 +34,7 @@ class AnvilProcessor(object):
       time.sleep(0.5)
       self.world.queue.put(Tasks.MOVE_MOUSE_UNTIL_ANVIL)
       self.world.queue.put(Tasks.CLICK_CURRENT)
+      self.world.queue.put(Tasks.WAIT_10_SEC)
       self.world.queue.put(Tasks.WAIT_30_SEC)
 
     else:
@@ -45,6 +44,5 @@ class AnvilProcessor(object):
     self.world.queue.put(Tasks.MOVE_MOUSE_UNTIL_FORGE)
     self.world.queue.put(Tasks.CLICK_CURRENT)
     self.world.queue.put(Tasks.PROCESS_FORGE)
-
 
     self.my_logger.log("AnvilProcessor: END")

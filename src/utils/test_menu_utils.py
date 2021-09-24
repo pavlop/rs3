@@ -2,7 +2,7 @@ import unittest
 
 from src.resources.images_map import IMAGE_MAP
 from src.resources.images_map import ScreenPart
-from utils.menu_utils import identify_inventory_tab, inventory_slot_1
+from utils.menu_utils import inventory_slots_empty
 from utils.screen_utils import show_image_with_rectangle
 
 
@@ -15,11 +15,22 @@ class TestMenuUtils(unittest.TestCase):
   #   area = area_between_pictures(screen, top, bottom)
   #   draw_rectangle(screen, resize_area_keep_center(area, 0.3))
 
-  def testDemoInventory(self):
+  # def testDemoFistSlotInventory(self):
+  #   screen = IMAGE_MAP[ScreenPart.TEST_SCREENSHOT_FULL_SCREEN_MINE]
+  #   inventory = identify_inventory_tab(screen)
+  #   first_slot = inventory_slot_1(inventory)
+  #   show_image_with_rectangle(screen, first_slot)
+
+  # def testDemoInventoryArea(self):
+  #   screen = IMAGE_MAP[ScreenPart.TEST_SCREENSHOT_FULL_SCREEN_MINE]
+  #   inventory = identify_inventory_tab(screen)
+  #   show_image_with_rectangle(screen, inventory)
+
+  def testDemoInventorySlots(self):
     screen = IMAGE_MAP[ScreenPart.TEST_SCREENSHOT_FULL_SCREEN_MINE]
-    inventory = identify_inventory_tab(screen)
-    first_slot = inventory_slot_1(inventory)
-    show_image_with_rectangle(screen, first_slot)
+    # screen = IMAGE_MAP[ScreenPart.TEST_INVENTORY_WOOD]
+    empty_slot = inventory_slots_empty(screen)
+    show_image_with_rectangle(screen, empty_slot)
 
 
 if __name__ == '__main__':

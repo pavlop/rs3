@@ -17,6 +17,7 @@ class ScreenPart(Enum):
   BUTTON_BEGIN_PROJECT = 6
   TELEPORT_MINIMAP_ICON = 7
   BUTTON_DEPOSIT_ALL_MATERIALS = 8
+  EMPTY_INVENTORY_CELL = 9
 
   # World objects 100
   MINING_LABEL_ANY = 101
@@ -37,6 +38,7 @@ class ScreenPart(Enum):
   TEST_SCREENSHOT_FULL_SCREEN_MINE = 1009
   TEST_MINIMAP_FIRST_TOWN = 1010
   TEST_FULL_SCREENSHOT_SMELT_INTERFACE = 1011
+  TEST_INVENTORY_WOOD = 1012
 
   # Map related images (world map + minimap)
   BANK_MINIMAP_LABEL = 10003
@@ -53,6 +55,7 @@ IMAGE_FILES_MAP = {
   ScreenPart.ICON_ALL_CHATS: 'resources/menu/icon_all_chats.png',
   ScreenPart.BUTTON_BEGIN_PROJECT: 'resources/menu/button_begin_project.png',
   ScreenPart.BUTTON_DEPOSIT_ALL_MATERIALS: 'resources/menu/button_deposit_all_materials.png',
+  ScreenPart.EMPTY_INVENTORY_CELL: 'resources/menu/empty_inventory_cell.png',
 
   # Labels
   ScreenPart.ATTACK_LABEL: 'resources/labels/attack_label.png',
@@ -77,6 +80,8 @@ IMAGE_FILES_MAP = {
   ScreenPart.TEST_MARKERS_BOTTOM_RED: 'resources/test/test_marker_small_red.png',
   ScreenPart.TEST_MINIMAP_FIRST_TOWN: 'resources/test/minimap_first_town_test.png',
   ScreenPart.TEST_FULL_SCREENSHOT_SMELT_INTERFACE: 'resources/test/full_screenshot_smelt_interface.png',
+  ScreenPart.TEST_INVENTORY_WOOD: 'resources/test/test_inventory_wood.png',
+
 }
 
 # Convert string paths to absolute paths

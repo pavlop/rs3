@@ -6,8 +6,6 @@ from processors.anvil_processor import AnvilProcessor
 from processors.forge_processor import ForgeProcessor
 from processors.god_processor import GodProcessor
 from processors.mouse_processor import MouseProcessor
-from src.resources.images_map import IMAGE_MAP
-from src.resources.images_map import ScreenPart
 from utils.screen_utils import MyLogger
 from world.tasks import Tasks
 from world.world_state import WorldState
@@ -28,7 +26,6 @@ def main():
   world.queue.put(Tasks.MOVE_MOUSE_UNTIL_ANVIL)
   world.queue.put(Tasks.CLICK_CURRENT)
   world.queue.put(Tasks.PROCESS_ANVIL)
-
 
   # Main Thread: Quit Program
   time.sleep(4 * 60 * 60)
