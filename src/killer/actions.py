@@ -19,12 +19,14 @@ class KillActions(object):
     time.sleep(float(random.randrange(min_sec * 100, max_sec * 100)) / 100)
 
   def kill_next_target(self, sec_per_monster):
-    self.next_target()
+    # self.next_target()
     self.sleep_random_sec(0, 0.1)
     self.next_target()
-    self.sleep_random_sec(0, 1)
+    self.sleep_random_sec(0.1, 0.5)
     self.attack_skill('1')
     self.attack_skill('2')
+    self.attack_skill('3')
+    self.attack_skill('4')
     self.sleep_random_sec(sec_per_monster, sec_per_monster + 3)
 
   # def rotate_map(self):

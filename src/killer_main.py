@@ -1,10 +1,10 @@
 import time
 
-from src import killer
+from killer import killer
 
 
 def main():
-  killer.KillerScript(sec_per_monster=14, rest_after_n_iterations=2).start()
+  killer.KillerScript(sec_per_monster=37, rest_after_n_iterations=2).start()
 
 
 if __name__ == "__main__":
